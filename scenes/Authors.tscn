@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://fonts/pixel.tres" type="DynamicFont" id=1]
+[ext_resource path="res://objects/animatedAuthorsText.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/authorsAnim.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "onLoad"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("borderLeft:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 600 ), Vector2( 250, 600 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("borderRight:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 600 ), Vector2( 250, 600 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("borderRight:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1024, 0 ), Vector2( 774, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/authorsText:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -177 ), Vector2( 0, 650 ) ]
+}
+
+[node name="Authors" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="borderLeft" type="ColorRect" parent="."]
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.784314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="borderRight" type="ColorRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.784314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/onLoad = SubResource( 1 )
+
+[node name="animatedAuthorsText" parent="." instance=ExtResource( 2 )]
+margin_left = 839.099
+margin_top = 437.926
+margin_right = 839.099
+margin_bottom = 437.926
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="authorsText" type="Label" parent="CanvasLayer"]
+anchor_right = 1.0
+margin_top = -177.0
+margin_bottom = -157.0
+custom_fonts/font = ExtResource( 1 )
+text = "<--- информация об авторах --->"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

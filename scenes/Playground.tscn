@@ -1,0 +1,262 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://sprites/trashcanBtnHover.png" type="Texture" id=1]
+[ext_resource path="res://sprites/trashcanBtnPressed.png" type="Texture" id=2]
+[ext_resource path="res://sprites/trash/plasticbottle.png" type="Texture" id=3]
+[ext_resource path="res://sprites/trashcanBtnMain.png" type="Texture" id=4]
+[ext_resource path="res://fonts/pixel.tres" type="DynamicFont" id=5]
+[ext_resource path="res://scripts/onCardLoad.gd" type="Script" id=6]
+[ext_resource path="res://scripts/trashcanBtns/plastic.gd" type="Script" id=7]
+[ext_resource path="res://fonts/pixelBig.tres" type="DynamicFont" id=8]
+[ext_resource path="res://scripts/scorePlayground.gd" type="Script" id=9]
+[ext_resource path="res://scripts/trashcanBtns/paper.gd" type="Script" id=10]
+[ext_resource path="res://scripts/trashcanBtns/glass.gd" type="Script" id=11]
+[ext_resource path="res://scripts/trashcanBtns/other.gd" type="Script" id=12]
+
+[sub_resource type="Animation" id=1]
+resource_name = "onLoad"
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 512, -256 ), Vector2( 512, 200 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "onUnload"
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 512, 200 ), Vector2( 512, -256 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "lose"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("false:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 400, 650 ), Vector2( 400, 350 ), Vector2( 400, 350 ), Vector2( 400, 650 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "win"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("true:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 400, 650 ), Vector2( 400, 350 ), Vector2( 400, 350 ), Vector2( 400, 650 ) ]
+}
+
+[node name="Playground" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="background" type="ColorRect" parent="."]
+margin_left = -59.0
+margin_top = -54.0
+margin_right = 1103.0
+margin_bottom = 653.0
+color = Color( 0, 0.576471, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite" type="Sprite" parent="."]
+position = Vector2( 512, 200 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/onLoad = SubResource( 1 )
+anims/onUnload = SubResource( 2 )
+
+[node name="winloseAnim" type="AnimationPlayer" parent="."]
+anims/lose = SubResource( 3 )
+anims/win = SubResource( 4 )
+
+[node name="buttons" type="Node" parent="."]
+
+[node name="plastic" type="TextureButton" parent="buttons"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -399.638
+margin_top = -165.329
+margin_right = -129.638
+margin_bottom = 214.671
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 1 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="glass" type="TextureButton" parent="buttons"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -172.638
+margin_top = -165.329
+margin_right = 97.3621
+margin_bottom = 214.671
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 1 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="paper" type="TextureButton" parent="buttons"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 95.3621
+margin_top = -165.329
+margin_right = 365.362
+margin_bottom = 214.671
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 1 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="other" type="TextureButton" parent="buttons"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 313.362
+margin_top = -165.329
+margin_right = 583.362
+margin_bottom = 214.671
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 1 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="plasticTxt" type="Label" parent="buttons"]
+margin_left = 117.422
+margin_top = 550.0
+margin_right = 186.422
+margin_bottom = 566.0
+custom_fonts/font = ExtResource( 5 )
+text = "Пластик"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="glassTxt" type="Label" parent="buttons"]
+margin_left = 344.602
+margin_top = 550.0
+margin_right = 413.602
+margin_bottom = 566.0
+custom_fonts/font = ExtResource( 5 )
+text = "Стекло"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="paperTxt" type="Label" parent="buttons"]
+margin_left = 613.813
+margin_top = 550.0
+margin_right = 682.813
+margin_bottom = 566.0
+custom_fonts/font = ExtResource( 5 )
+text = "Бумага"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="otherTxt" type="Label" parent="buttons"]
+margin_left = 832.904
+margin_top = 550.0
+margin_right = 901.904
+margin_bottom = 566.0
+custom_fonts/font = ExtResource( 5 )
+text = "Другое"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="true" type="Label" parent="."]
+margin_left = 400.0
+margin_top = 650.0
+margin_right = 654.0
+margin_bottom = 722.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "Верно!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="false" type="Label" parent="."]
+margin_left = 400.0
+margin_top = 650.0
+margin_right = 717.0
+margin_bottom = 722.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Ошибка!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score" type="Label" parent="."]
+margin_left = 22.4396
+margin_top = 15.4756
+margin_right = 160.44
+margin_bottom = 42.4756
+custom_fonts/font = ExtResource( 5 )
+text = "Ваш счет: "
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sound" type="AudioStreamPlayer" parent="."]

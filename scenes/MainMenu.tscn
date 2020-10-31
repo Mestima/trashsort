@@ -1,0 +1,165 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://sprites/trashcan.png" type="Texture" id=1]
+[ext_resource path="res://objects/sun.tscn" type="PackedScene" id=2]
+[ext_resource path="res://fonts/pixel.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scripts/exitBtn.gd" type="Script" id=4]
+[ext_resource path="res://scripts/authorsBtn.gd" type="Script" id=5]
+[ext_resource path="res://scripts/playBtn.gd" type="Script" id=6]
+[ext_resource path="res://objects/dog.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/fallingTrashcans.gd" type="Script" id=8]
+[ext_resource path="res://scripts/mainMenuLoadout.gd" type="Script" id=9]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+[sub_resource type="Curve" id=2]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 360 ), 0.0, 0.0, 0, 0, Vector2( 1, -360 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+render_priority = 1
+emission_shape = 2
+emission_box_extents = Vector3( 600, 1, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 100, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel_random = 1.0
+angle = 25.0
+angle_random = 1.0
+angle_curve = SubResource( 3 )
+scale = 0.5
+scale_random = 1.0
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="Node" parent="."]
+
+[node name="ColorRect5" type="ColorRect" parent="background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0.694118, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect4" type="ColorRect" parent="background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 331.0
+color = Color( 0, 0, 0, 0.392157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 350.0
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 368.0
+color = Color( 0, 0, 0, 0.784314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dog" parent="background" instance=ExtResource( 7 )]
+position = Vector2( 113, 60.9998 )
+
+[node name="fallingTrashcans" type="Particles2D" parent="background"]
+material = SubResource( 1 )
+position = Vector2( 503.427, -72.738 )
+z_index = 1
+amount = 50
+lifetime = 4.0
+speed_scale = 1.5
+randomness = 1.0
+process_material = SubResource( 4 )
+texture = ExtResource( 1 )
+script = ExtResource( 8 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="background"]
+
+[node name="ColorRect" type="ColorRect" parent="background/CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 392.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sun" parent="background" instance=ExtResource( 2 )]
+position = Vector2( 1017.56, 12.2434 )
+
+[node name="buttons" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="buttons"]
+layer = 2
+
+[node name="Play" type="Button" parent="buttons/CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = 126.5
+margin_right = 256.0
+margin_bottom = 161.5
+custom_fonts/font = ExtResource( 3 )
+text = "Играть"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Authors" type="Button" parent="buttons/CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = 165.5
+margin_right = 256.0
+margin_bottom = 200.5
+custom_fonts/font = ExtResource( 3 )
+text = "Авторы"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Button" parent="buttons/CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = 204.5
+margin_right = 256.0
+margin_bottom = 239.5
+custom_fonts/font = ExtResource( 3 )
+text = "Выход"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sound" type="AudioStreamPlayer" parent="."]

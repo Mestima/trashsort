@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/pixel.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scripts/dogLoadout.gd" type="Script" id=2]
+
+[node name="bg" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg_color" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -288.5
+margin_top = -88.5
+margin_right = 288.5
+margin_bottom = 88.5
+custom_fonts/font = ExtResource( 1 )
+text = "В память о Умке - замечательной собаке,
+жизнь которой была унесена столь рано.
+
+Умка, мы тебя помним и любим.
+Будь счастлива в лучшем мире...
+-07.08.19-"
+align = 1
+
+[node name="sound" type="AudioStreamPlayer" parent="."]

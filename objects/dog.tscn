@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://sprites/dog1.png" type="Texture" id=1]
+[ext_resource path="res://sprites/dog2.png" type="Texture" id=2]
+[ext_resource path="res://sprites/cloud.png" type="Texture" id=3]
+[ext_resource path="res://scripts/dog.gd" type="Script" id=4]
+[ext_resource path="res://scripts/dogBtn.gd" type="Script" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("cloud:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ) ]
+}
+
+[node name="dog" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="cloud" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="tail" type="AnimatedSprite" parent="cloud"]
+position = Vector2( -0.0646362, -9.76372 )
+frames = SubResource( 1 )
+
+[node name="btn" type="TextureButton" parent="cloud"]
+margin_left = -31.0167
+margin_top = -25.7713
+margin_right = 31.9833
+margin_bottom = 14.2287
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/idle = SubResource( 2 )

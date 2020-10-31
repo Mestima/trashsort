@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/menuMusic.ogg-7b2ef9db38ef9d3195c708db8139d197.oggstr"
+
+[deps]
+
+source_file="res://sounds/menuMusic.ogg"
+dest_files=[ "res://.import/menuMusic.ogg-7b2ef9db38ef9d3195c708db8139d197.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
